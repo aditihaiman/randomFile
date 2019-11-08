@@ -25,17 +25,22 @@ int main(){
     //char test[10] = "hello";
     printf("Writing numbers to file\n");
     int output = open("output.txt", O_WRONLY);
-    int bytes = write(output, rands, sizeof(rands));
-    
+    int bytes = write(output, rands, 40);
+    printf("bytes written: %d\n", bytes);
+    //printf("output fd: %d\n", output);
+
     printf("Reading numbers from file\n");
     int verify[10];
-    bytes = read(output, verify, sizeof(verify));
+    output = open("output.txt", O_RDONLY);
+    bytes = read(output, verify, 40);
+    
+    printf("bytes read: %d\n", bytes);
+
     
     printf("Verifying numbers:\n");
     for(int a = 0; a < 10; a++){
         printf("random 0: %d\n", verify[a]);
     }
     //int x = randNum();
-    //printf("%d\n", x);
     return 0;
 }
